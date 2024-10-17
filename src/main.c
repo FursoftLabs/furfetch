@@ -20,17 +20,9 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <stdlib.h>
 #include "help.h"
 #include "utils.h"
-
-
-void display_ascii_art() {
-	printf(" |\\__/,|   (`\\\n");
-	printf(" |0 0  |.--.) )\n");
-	printf(" ( T   )     /\n");
-	printf("(((u_(((/(((_/\n");
-}
-
 
 void print_details() {
 	get_hostname();
@@ -40,18 +32,20 @@ void print_details() {
 	get_memory_info();
 }
 
-int main(int argc, char *argv[]) {
+void handle_args(int argc, char *argv[]) {
 	for (int i = 0; i < argc; i++) {
 		if (strcmp(argv[i], "-h") == 0 || strcmp(argv[i], "--help") == 0) {
 			print_help(argv[0]);
-			return 0;
+			exit(0);
 		}
 	}
+	return;
+}
 
+int main(int argc, char *argv[]) {
+	handle_args(argc, argv);
     printf("\n");
 	print_details();
 	printf("\n");
-    display_ascii_art();
-
     return 0;
 }
