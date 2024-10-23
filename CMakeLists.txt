@@ -18,4 +18,5 @@
 
 project(furfetch)
 
+add_compile_options(-fsanitize=address,undefined)
 add_executable(furfetch src/help.c src/utils.c src/main.c )
